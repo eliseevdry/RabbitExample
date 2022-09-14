@@ -9,12 +9,26 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class RabbitMqListener {
-    @RabbitListener(queues = "myQueue")
+    //---2---free listeners process messages in sequence---2---
+
+    /*@RabbitListener(queues = "myQueue")
     public void processMyQueue1(String message) {
         log.info("Received from myQueue 1 : {}", message);
     }
 
     @RabbitListener(queues = "myQueue")
+    public void processMyQueue2(String message) {
+        log.info("Received from myQueue 2 : {}", message);
+    }*/
+
+    //---2---free listeners process messages in sequence---2---
+
+    @RabbitListener(queues = "myQueue")
+    public void processMyQueue1(String message) {
+        log.info("Received from myQueue 1 : {}", message);
+    }
+
+    @RabbitListener(queues = "myQueue2")
     public void processMyQueue2(String message) {
         log.info("Received from myQueue 2 : {}", message);
     }
