@@ -34,15 +34,16 @@ public class RabbitConfiguration {
         return new Queue("myQueue");
     }
 
-    //________receiver in config________
-    /*
-    @Bean
+    //____1____receiver in config____1____
+
+    /*@Bean
     public SimpleMessageListenerContainer messageListenerContainer() {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory());
         container.setQueueNames("myQueue");
-        container.setMessageListener(message -> log.info("Received from myQueue : " + new String(message.getBody())));
+        container.setMessageListener(message -> log.info("Received from myQueue : {}", new String(message.getBody())));
         return container;
-    }
-    */
+    }*/
+
+    //____1____receiver in config____1____
 }

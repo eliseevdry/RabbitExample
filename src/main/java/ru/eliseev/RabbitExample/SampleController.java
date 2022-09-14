@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 @RestController
 @Slf4j
 public class SampleController {
@@ -17,7 +19,9 @@ public class SampleController {
     @PostMapping("/emit")
     public ResponseEntity<String> emit(@RequestBody String message) {
         log.info("Emit to myQueue");
-        template.convertAndSend("myQueue", message);
+        for (int i = 0; i < 10; i++) {
+            template.convertAndSend("myQueue", ThreadLocalRandom.current().nextInt());
+        }
         return ResponseEntity.ok("Success emit to queue");
     }
 }
